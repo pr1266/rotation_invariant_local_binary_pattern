@@ -1,4 +1,4 @@
-function ri_lbp = rotation_invariant
+function ri_lbp = rotation_invariant(I_values)
 
 
 

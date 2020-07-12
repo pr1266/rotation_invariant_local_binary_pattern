@@ -1,0 +1,8 @@
+function uni = uniform(I_values)
+
+%% check for maximum 2 transitions :
+
+
+
+
+end
