@@ -1,5 +1,6 @@
 function ri_lbp = rotation_invariant(I_values)
-
+disp('size');
+disp(size(I_values));
 temp = zeros(size(I_values));
 power = [1 2 4 8 16 32 64 128];
 ri = zeros(size(I_values));
@@ -7,15 +8,23 @@ for i=1 : size(I_values)
    
    
     temp = I_values;
-    last = I_values(size(I_values));
+    last = I_values(1, 8);
     
     I_values(2:size(I_values)) = I_values(1:size(I_values) - 1);
     I_values(1) = last;
-    
-    ri(i) = temp * power;
+    disp(temp);
+    disp(power);
+    temp_ = temp * power.';
+    disp(temp_);
+    ri(i) = temp_
     
 end
-
-ri_lbp = min(ri);
-
+temp__ = ri(ri ~= 0);
+if size(temp__) == 0
+    ri_lbp = 0;
+else
+    disp(min(ri));
+    ri_lbp = min(temp__);
+end
+    
 end

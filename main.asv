@@ -1,6 +1,0 @@
-first_image = imread('2.png');
-
-first_lbp = lbp(first_image);
-imshow(first_lbp);
-
-seconde_image = imread('2.png');

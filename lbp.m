@@ -54,7 +54,9 @@ for i = 2 : row-1
         %disp('pixel');
         %disp(I3(i-1, j-1));
         
-        if uniform(I_values) == 2
+        uni_value = uniform(I_values);
+        %disp(uni_value);
+        if uni_value == 2
             %disp('I_values');
             %disp(size(I_values));
             UNI_LBP(uni_index) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
@@ -66,7 +68,7 @@ for i = 2 : row-1
         
     end
 end
-
+disp(RI_LBP);
 LBP = RI_LBP;
 
 end
