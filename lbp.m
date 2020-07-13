@@ -20,10 +20,13 @@ ri_index = 1;
 
 for i = 2 : row-1
     for j = 2 : col-1
-        
+        %disp(i);
+        %disp(j);
         % inja 8 ta hamsaye ro check mikonim :
         c = I2(i, j);
         I3(i-1, j-1) = I2(i-1, j-1) > c;
+        %disp('inyaro:');
+        %disp(I3(i-1, j-1));
         I3(i-1, j) = I2(i-1, j) > c;
         I3(i-1, j+1) = I2(i-1, j+1) > c; 
         I3(i, j+1) = I2(i, j+1) > c;
@@ -33,10 +36,27 @@ for i = 2 : row-1
         I3(i, j-1) = I2(i, j-1)>c;
 
         LBP(i, j) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
-
+        
         % uniform lbp : 
-        I_values = [I3(i-1, j-1); I3(i-1, j); I3(i-1, j+1); I3(i, j+1); I3(i+1, j+1); I3(I+1, j); I3(i+1, j-1); I3(i, j-1)]
+        
+        I_values = zeros(1, 8);
+        %disp(size(I_values));
+        I_values(1) = I3(i-1, j-1);
+        I_values(2) = I3(i-1, j);
+        I_values(3) = I3(i-1, j+1);
+        I_values(4) = I3(i, j+1);
+        %disp('inyaro 2:');
+        %disp(I_values(4));
+        I_values(5) = I3(i+1, j+1);
+        I_values(6) = I3(i+1, j);
+        I_values(7) = I3(i+1,j-1);
+        I_values(8) = I3(i, j-1);
+        %disp('pixel');
+        %disp(I3(i-1, j-1));
+        
         if uniform(I_values) == 2
+            %disp('I_values');
+            %disp(size(I_values));
             UNI_LBP(uni_index) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
             uni_index = uni_index + 1;
             % rotation invariant
@@ -46,5 +66,7 @@ for i = 2 : row-1
         
     end
 end
+
+LBP = RI_LBP;
 
 end
