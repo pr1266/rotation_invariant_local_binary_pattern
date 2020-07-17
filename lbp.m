@@ -58,21 +58,21 @@ for i = 2 : row-1
         uni_value = uniform(I_values);
         %disp(uni_value);
         if uni_value ~= -1
-            UNI_LBP(uni_index) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
-            uni_index = uni_index + 1;
+            %UNI_LBP(uni_index) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
+            %uni_index = uni_index + 1;
             % rotation invariant
-            disp('uni value');
-            disp(uni_value);
+            %disp('uni value');
+            %disp(uni_value);
             
             if uni_value ~= 0 & uni_value ~= 8
                 r_i = rotation_invariant(I_values);
-                disp('ri : ');
-                disp(r_i);
+                %disp('ri : ');
+                %disp(r_i);
                 RI_LBP(uni_value, 2) = min(RI_LBP(uni_value, 2), r_i);
             else
                 r_i = rotation_invariant(I_values);
-                disp('ri : ');
-                disp(r_i);
+                %disp('ri : ');
+                %disp(r_i);
                 RI_LBP(P, 2) = 255;
             end
             

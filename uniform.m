@@ -7,7 +7,7 @@ counter_ = 0;
 %disp(counter_);
 for i = 2: 8
     
-    x = I_values(1, i) - I_values(1, i - 1)
+    x = I_values(1, i) - I_values(1, i - 1);
     if I_values(i) - I_values(i - 1) ~= 0
         counter_ = counter_ + 1;
     end 
