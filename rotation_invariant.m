@@ -22,9 +22,13 @@ end
 temp__ = ri(ri ~= 0);
 if size(temp__) == 0
     ri_lbp = 0;
+    disp('last ri lbp');
+    disp(ri_lbp);
 else
     disp(min(ri));
     ri_lbp = min(temp__);
+    disp('last ri lbp');
+    disp(ri_lbp);
 end
-    
+
 end

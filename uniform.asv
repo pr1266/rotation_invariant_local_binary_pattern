@@ -20,8 +20,8 @@ end
 
 if counter_ > 2
     counter = -1;
-else
-    counter = sum(I_values ~= 0);
-end
 
+else
+counter = counter_;
+    
 end

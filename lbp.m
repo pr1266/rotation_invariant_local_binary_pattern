@@ -13,20 +13,21 @@ P = 8;
 
 LBP = zeros(row, col);
 UNI_LBP = zeros(P * (P - 1) + 2);
-RI_LBP = zeros(P + 2);
+RI_LBP = zeros(P + 2, 2);
+
+for i = 1: P + 2
+    RI_LBP(i, 1) = i;
+    RI_LBP(i, 2) = 1000;
+end
 
 uni_index = 1;
 ri_index = 1;
 
 for i = 2 : row-1
     for j = 2 : col-1
-        %disp(i);
-        %disp(j);
         % inja 8 ta hamsaye ro check mikonim :
         c = I2(i, j);
         I3(i-1, j-1) = I2(i-1, j-1) > c;
-        %disp('inyaro:');
-        %disp(I3(i-1, j-1));
         I3(i-1, j) = I2(i-1, j) > c;
         I3(i-1, j+1) = I2(i-1, j+1) > c; 
         I3(i, j+1) = I2(i, j+1) > c;
@@ -56,14 +57,26 @@ for i = 2 : row-1
         
         uni_value = uniform(I_values);
         %disp(uni_value);
-        if uni_value == 2
-            %disp('I_values');
-            %disp(size(I_values));
+        if uni_value ~= -1
             UNI_LBP(uni_index) = I3(i-1, j-1) *2^7 + I3(i-1, j) * 2^6 + I3(i-1, j+1) * 2^5 + I3(i, j+1) * 2^4 + I3(i+1, j+1) * 2^3 + I3(i+1, j) * 2^2 + I3(i+1, j-1) * 2^1 + I3(i, j-1) * 2^0;
             uni_index = uni_index + 1;
             % rotation invariant
-            RI_LBP(ri_index) = rotation_invariant(I_values);
-            ri_index = ri_index + 1;
+            disp('uni value');
+            disp(uni_value);
+            
+            if uni_value ~= 0 & uni_value ~= 8
+                r_i = rotation_invariant(I_values);
+                disp('ri : ');
+                disp(r_i);
+                RI_LBP(uni_value, 2) = min(RI_LBP(uni_value, 2), r_i);
+            else
+                r_i = rotation_invariant(I_values);
+                disp('ri : ');
+                disp(r_i);
+                RI_LBP(P, 2) = 255;
+            end
+            
+                %ri_index = ri_index + 1;
         end
         
     end
